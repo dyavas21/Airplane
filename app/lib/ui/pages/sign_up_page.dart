@@ -1,4 +1,5 @@
 import 'package:app/shared/theme.dart';
+import 'package:app/ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -162,23 +163,14 @@ class _SignUpPageState extends State<SignUpPage> {
             SizedBox(
               height: 30,
             ),
-            Container(
-              height: 55,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                color: kPrimaryColor,
-                borderRadius: BorderRadius.circular(defaultRadius),
-              ),
-              child: Center(
-                child: Text(
-                  'Get Started',
-                  style: whiteTextStyle.copyWith(
-                    fontSize: 18,
-                    fontWeight: medium,
-                  ),
-                ),
-              ),
-            )
+            GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/bonus');
+                },
+                child: CustomButton(
+                  customMargin: 0,
+                  description: 'Get Started',
+                )),
           ],
         ),
       );

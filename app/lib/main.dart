@@ -1,4 +1,6 @@
+import 'package:app/ui/pages/bonus_saldo_page.dart';
 import 'package:app/ui/pages/get_started_page.dart';
+import 'package:app/ui/pages/main_page.dart';
 import 'package:app/ui/pages/sign_up_page.dart';
 import 'package:app/ui/pages/splash_page.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +21,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => SplashPage(),
         '/get-started': (context) => GetStartedPge(),
         '/sign-up': (context) => SignUpPage(),
+        '/bonus': (context) => BonusSaldoPage(),
+        '/main': (context) => MainPage(),
       },
     );
   }

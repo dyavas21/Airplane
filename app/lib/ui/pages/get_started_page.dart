@@ -1,4 +1,5 @@
 import 'package:app/shared/theme.dart';
+import 'package:app/ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class GetStartedPge extends StatelessWidget {
@@ -45,24 +46,9 @@ class GetStartedPge extends StatelessWidget {
                   onTap: () {
                     Navigator.pushNamed(context, '/sign-up');
                   },
-                  child: Container(
-                    height: 55,
-                    width: MediaQuery.of(context).size.width - 77 - 77,
-                    decoration: BoxDecoration(
-                      color: kPrimaryColor,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(defaultRadius),
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Get Started',
-                        style: whiteTextStyle.copyWith(
-                          fontSize: 18,
-                          fontWeight: medium,
-                        ),
-                      ),
-                    ),
+                  child: CustomButton(
+                    customMargin: 77,
+                    description: 'Get Started',
                   ),
                 ),
                 SizedBox(
