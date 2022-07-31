@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import '../../shared/theme.dart';
 
 class ThisYearCard extends StatelessWidget {
-  const ThisYearCard({super.key});
+  final String? imgUrl;
+  final String? title;
+  final String? desc;
+  final String? star;
+  const ThisYearCard({this.desc, this.imgUrl, this.star, this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +35,7 @@ class ThisYearCard extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(18),
               image: DecorationImage(
-                image: AssetImage('assets/destination6.png'),
+                image: AssetImage(imgUrl!),
               ),
             ),
           ),
@@ -44,7 +48,7 @@ class ThisYearCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Danau Beratan',
+                  title!,
                   style: blackTextStyle.copyWith(
                     fontSize: 18,
                     fontWeight: medium,
@@ -54,7 +58,7 @@ class ThisYearCard extends StatelessWidget {
                   height: 5,
                 ),
                 Text(
-                  'Singaraja',
+                  desc!,
                   style: greyTextStyle.copyWith(
                     fontWeight: light,
                   ),
@@ -67,7 +71,7 @@ class ThisYearCard extends StatelessWidget {
             width: 20,
           ),
           Text(
-            '4.5',
+            star!,
             style: blackTextStyle.copyWith(
               fontWeight: medium,
             ),

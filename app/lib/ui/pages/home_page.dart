@@ -1,4 +1,5 @@
 import 'package:app/shared/theme.dart';
+import 'package:app/ui/pages/detail_page.dart';
 import 'package:app/ui/widgets/destination_card.dart';
 import 'package:app/ui/widgets/this_year_card.dart';
 import 'package:flutter/material.dart';
@@ -58,11 +59,21 @@ class HomePage extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         child: Row(
           children: [
-            DestinationCard(
-              imgUrl: 'assets/destination1.png',
-              title: 'Lake Ciliwung',
-              star: '4.8',
-              desc: 'Tangerang',
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailPage(),
+                  ),
+                );
+              },
+              child: DestinationCard(
+                imgUrl: 'assets/destination1.png',
+                title: 'Lake Ciliwung',
+                star: '4.8',
+                desc: 'Tangerang',
+              ),
             ),
             DestinationCard(
               imgUrl: 'assets/destination2.png',
@@ -114,10 +125,36 @@ class HomePage extends StatelessWidget {
                 fontWeight: semiBold,
               ),
             ),
-            ThisYearCard(),
-            ThisYearCard(),
-            ThisYearCard(),
-            ThisYearCard(),
+            ThisYearCard(
+              imgUrl: 'assets/destination6.png',
+              title: 'Danau Beratan',
+              desc: 'Singajara',
+              star: '4.5',
+            ),
+            ThisYearCard(
+              imgUrl: 'assets/destination7.png',
+              title: 'Sydney Opera',
+              desc: 'Australia',
+              star: '4.7',
+            ),
+            ThisYearCard(
+              imgUrl: 'assets/destination8.png',
+              title: 'Roma',
+              desc: 'Italy',
+              star: '4.8',
+            ),
+            ThisYearCard(
+              imgUrl: 'assets/destination9.png',
+              title: 'Payung Teduh',
+              desc: 'Singapore',
+              star: '4.5',
+            ),
+            ThisYearCard(
+              imgUrl: 'assets/destination10.png',
+              title: 'Hill Hey',
+              desc: 'Monaco',
+              star: '4.7',
+            ),
           ],
         ),
       );
