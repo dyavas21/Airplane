@@ -61,12 +61,7 @@ class HomePage extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DetailPage(),
-                  ),
-                );
+                Navigator.pushNamed(context, '/detail');
               },
               child: DestinationCard(
                 imgUrl: 'assets/destination1.png',
