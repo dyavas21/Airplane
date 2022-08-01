@@ -1,5 +1,6 @@
 import 'package:app/shared/theme.dart';
 import 'package:app/ui/widgets/custom_avaible_seat.dart';
+import 'package:app/ui/widgets/custom_button.dart';
 import 'package:app/ui/widgets/custom_title_seat.dart';
 import 'package:flutter/material.dart';
 
@@ -247,7 +248,54 @@ class ChoosePage extends StatelessWidget {
                   text: '',
                 ),
               ],
-            )
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Your seat',
+                    style: greyTextStyle.copyWith(
+                      fontWeight: light,
+                    ),
+                  ),
+                ),
+                Text(
+                  'A3, B3',
+                  style:
+                      blackTextStyle.copyWith(fontWeight: medium, fontSize: 16),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Total',
+                    style: greyTextStyle.copyWith(
+                      overflow: TextOverflow.ellipsis,
+                      fontWeight: light,
+                    ),
+                  ),
+                ),
+                Text(
+                  'IDR 540.000.000',
+                  style: purpleTextStyle.copyWith(
+                    overflow: TextOverflow.ellipsis,
+                    fontWeight: semiBold,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 30,
+            ),
           ],
         ),
       );
@@ -264,6 +312,18 @@ class ChoosePage extends StatelessWidget {
           text(),
           seatStatus(),
           availableSeat(),
+          SizedBox(
+            height: 30,
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/checkout');
+            },
+            child: CustomButton(
+              customMargin: 0,
+              description: 'Continue to Checkout',
+            ),
+          ),
         ],
       ),
     );

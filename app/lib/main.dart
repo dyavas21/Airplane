@@ -1,4 +1,5 @@
 import 'package:app/ui/pages/bonus_saldo_page.dart';
+import 'package:app/ui/pages/checkout_page.dart';
 import 'package:app/ui/pages/choose_page.dart';
 import 'package:app/ui/pages/detail_page.dart';
 import 'package:app/ui/pages/get_started_page.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/main': (context) => MainPage(),
         '/detail': (context) => DetailPage(),
         '/choose': (context) => ChoosePage(),
+        '/checkout': (context) => CheckoutPage(),
       },
     );
   }
