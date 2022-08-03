@@ -15,6 +15,7 @@ class GetStartedPge extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             child: Image.asset(
               'assets/airplane.png',
+              fit: BoxFit.fill,
             ),
           ),
           Center(
