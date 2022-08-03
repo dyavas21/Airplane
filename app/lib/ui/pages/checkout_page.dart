@@ -270,9 +270,14 @@ class CheckoutPage extends StatelessWidget {
           SizedBox(
             height: 30,
           ),
-          CustomButton(
-            description: 'Pay Now',
-            customMargin: 0,
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/success');
+            },
+            child: CustomButton(
+              description: 'Pay Now',
+              customMargin: 0,
+            ),
           ),
           SizedBox(
             height: 30,

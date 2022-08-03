@@ -6,6 +6,7 @@ import 'package:app/ui/pages/get_started_page.dart';
 import 'package:app/ui/pages/main_page.dart';
 import 'package:app/ui/pages/sign_up_page.dart';
 import 'package:app/ui/pages/splash_page.dart';
+import 'package:app/ui/pages/success_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         '/detail': (context) => DetailPage(),
         '/choose': (context) => ChoosePage(),
         '/checkout': (context) => CheckoutPage(),
+        '/success': (context) => SuccessPage(),
       },
     );
   }
