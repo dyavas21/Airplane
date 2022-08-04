@@ -117,7 +117,8 @@ class BonusSaldoPage extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, '/main');
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/main', (route) => false);
             },
             child: CustomButton(
               customMargin: 78,

@@ -1,17 +1,18 @@
+import 'package:app/cubit/auth_cubit.dart';
 import 'package:app/shared/theme.dart';
 import 'package:app/ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class SignUpPage extends StatelessWidget {
+  SignUpPage({super.key});
 
-  @override
-  State<SignUpPage> createState() => _SignUpPageState();
-}
-
-class _SignUpPageState extends State<SignUpPage> {
+  TextEditingController nameController = TextEditingController(text: '');
+  TextEditingController emailController = TextEditingController(text: '');
+  TextEditingController passwordController = TextEditingController(text: '');
+  TextEditingController hobbyController = TextEditingController(text: '');
   bool isActive = false;
 
   @override
@@ -35,6 +36,7 @@ class _SignUpPageState extends State<SignUpPage> {
     Widget input() {
       Widget fullName() {
         return TextFormField(
+          controller: nameController,
           cursorColor: kBlackColor,
           decoration: InputDecoration(
             hintText: 'Your full name',
@@ -53,6 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
       Widget emailAddress() {
         return TextFormField(
+          controller: emailController,
           cursorColor: kBlackColor,
           decoration: InputDecoration(
             hintText: 'Your email address',
@@ -71,6 +74,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
       Widget password() {
         return TextFormField(
+          controller: passwordController,
           obscureText: true,
           cursorColor: kBlackColor,
           decoration: InputDecoration(
@@ -90,6 +94,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
       Widget hobby() {
         return TextFormField(
+          controller: hobbyController,
           cursorColor: kBlackColor,
           decoration: InputDecoration(
             hintText: 'Your hobby',
@@ -163,14 +168,41 @@ class _SignUpPageState extends State<SignUpPage> {
             SizedBox(
               height: 30,
             ),
-            GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, '/bonus');
-                },
-                child: CustomButton(
-                  customMargin: 0,
-                  description: 'Get Started',
-                )),
+            BlocConsumer<AuthCubit, AuthState>(
+              listener: (context, state) {
+                if (state is AuthSuccess) {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/bonus', (route) => false);
+                } else if (state is AuthFailed) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      backgroundColor: kRedColor,
+                      content: Text(state.error),
+                    ),
+                  );
+                }
+              },
+              builder: (context, state) {
+                if (state is AuthLoading) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return GestureDetector(
+                    onTap: () {
+                      context.read<AuthCubit>().SignUp(
+                            email: emailController.text,
+                            password: passwordController.text,
+                            name: nameController.text,
+                            hobby: hobbyController.text,
+                          );
+                    },
+                    child: CustomButton(
+                      customMargin: 0,
+                      description: 'Get Started',
+                    ));
+              },
+            ),
           ],
         ),
       );
