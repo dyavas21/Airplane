@@ -1,6 +1,8 @@
+import 'package:app/cubit/auth_cubit.dart';
 import 'package:app/shared/theme.dart';
 import 'package:app/ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BonusSaldoPage extends StatelessWidget {
   const BonusSaldoPage({super.key});
@@ -21,40 +23,49 @@ class BonusSaldoPage extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             height: 211,
             decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/box.png'),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: kPrimaryColor.withOpacity(0.5),
-                    blurRadius: 50,
-                    offset: Offset(0, 10),
-                  )
-                ]),
+              image: DecorationImage(
+                image: AssetImage('assets/box.png'),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: kPrimaryColor.withOpacity(0.5),
+                  blurRadius: 50,
+                  offset: Offset(0, 10),
+                )
+              ],
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Name',
-                            style: whiteTextStyle.copyWith(
-                              fontWeight: light,
+                    BlocBuilder<AuthCubit, AuthState>(
+                      builder: (context, state) {
+                        if (state is AuthSuccess) {
+                          return Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Name',
+                                  style: whiteTextStyle.copyWith(
+                                    fontWeight: light,
+                                  ),
+                                ),
+                                Text(
+                                  '${state.user.name}',
+                                  style: whiteTextStyle.copyWith(
+                                    fontSize: 20,
+                                    fontWeight: medium,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          Text(
-                            'Kezia Anne',
-                            style: whiteTextStyle.copyWith(
-                              fontSize: 20,
-                              fontWeight: medium,
-                            ),
-                          ),
-                        ],
-                      ),
+                          );
+                        } else {
+                          return SizedBox();
+                        }
+                      },
                     ),
                     Image.asset(
                       'assets/logo.png',
@@ -81,12 +92,20 @@ class BonusSaldoPage extends StatelessWidget {
                     fontWeight: light,
                   ),
                 ),
-                Text(
-                  'IDR 280.000.000',
-                  style: whiteTextStyle.copyWith(
-                    fontSize: 26,
-                    fontWeight: medium,
-                  ),
+                BlocBuilder<AuthCubit, AuthState>(
+                  builder: (context, state) {
+                    if (state is AuthSuccess) {
+                      return Text(
+                        '${state.user.balance}',
+                        style: whiteTextStyle.copyWith(
+                          fontSize: 26,
+                          fontWeight: medium,
+                        ),
+                      );
+                    } else {
+                      return SizedBox();
+                    }
+                  },
                 ),
               ],
             ),

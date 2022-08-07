@@ -1,8 +1,10 @@
+import 'package:app/cubit/auth_cubit.dart';
 import 'package:app/shared/theme.dart';
 import 'package:app/ui/pages/detail_page.dart';
 import 'package:app/ui/widgets/destination_card.dart';
 import 'package:app/ui/widgets/this_year_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -10,47 +12,55 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget header() {
-      return Padding(
-        padding: const EdgeInsets.only(
-          left: 24,
-          right: 24,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    'Howdy,\nKezia Anne',
-                    style: blackTextStyle.copyWith(
-                      fontSize: 24,
-                      fontWeight: semiBold,
+      return BlocBuilder<AuthCubit, AuthState>(
+        builder: (context, state) {
+          if (state is AuthSuccess) {
+            return Padding(
+              padding: const EdgeInsets.only(
+                left: 24,
+                right: 24,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Howdy,\n${state.user.name}',
+                          style: blackTextStyle.copyWith(
+                            fontSize: 24,
+                            fontWeight: semiBold,
+                          ),
+                        ),
+                      ),
+                      CircleAvatar(
+                        backgroundColor: kWhiteColor,
+                        radius: 30,
+                        child: CircleAvatar(
+                          radius: 20,
+                          backgroundImage: AssetImage('assets/profile.png'),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 6,
+                  ),
+                  Text(
+                    'Where to fly today?',
+                    style: greyTextStyle.copyWith(
+                      fontSize: 16,
+                      fontWeight: light,
                     ),
                   ),
-                ),
-                CircleAvatar(
-                  backgroundColor: kWhiteColor,
-                  radius: 30,
-                  child: CircleAvatar(
-                    radius: 20,
-                    backgroundImage: AssetImage('assets/profile.png'),
-                  ),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 6,
-            ),
-            Text(
-              'Where to fly today?',
-              style: greyTextStyle.copyWith(
-                fontSize: 16,
-                fontWeight: light,
+                ],
               ),
-            ),
-          ],
-        ),
+            );
+          } else {
+            return SizedBox();
+          }
+        },
       );
     }
 

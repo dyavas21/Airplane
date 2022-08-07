@@ -6,6 +6,7 @@ import 'package:app/ui/pages/choose_page.dart';
 import 'package:app/ui/pages/detail_page.dart';
 import 'package:app/ui/pages/get_started_page.dart';
 import 'package:app/ui/pages/main_page.dart';
+import 'package:app/ui/pages/sign_in_page.dart';
 import 'package:app/ui/pages/sign_up_page.dart';
 import 'package:app/ui/pages/splash_page.dart';
 import 'package:app/ui/pages/success_page.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => SplashPage(),
           '/get-started': (context) => GetStartedPge(),
+          '/sign-in': (context) => SignInPage(),
           '/sign-up': (context) => SignUpPage(),
           '/bonus': (context) => BonusSaldoPage(),
           '/main': (context) => MainPage(),

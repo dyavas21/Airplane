@@ -6,8 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SignUpPage extends StatelessWidget {
-  SignUpPage({super.key});
+class SignInPage extends StatelessWidget {
+  SignInPage({super.key});
 
   TextEditingController nameController = TextEditingController(text: '');
   TextEditingController emailController = TextEditingController(text: '');
@@ -24,7 +24,7 @@ class SignUpPage extends StatelessWidget {
           bottom: 30,
         ),
         child: Text(
-          'Join us and get\nyour next journey',
+          'Sign In with your\nexisting account',
           style: blackTextStyle.copyWith(
             fontSize: 24,
             fontWeight: semiBold,
@@ -92,25 +92,6 @@ class SignUpPage extends StatelessWidget {
         );
       }
 
-      Widget hobby() {
-        return TextFormField(
-          controller: hobbyController,
-          cursorColor: kBlackColor,
-          decoration: InputDecoration(
-            hintText: 'Your hobby',
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(defaultRadius),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(defaultRadius),
-              borderSide: BorderSide(
-                color: kPrimaryColor,
-              ),
-            ),
-          ),
-        );
-      }
-
       return Container(
         margin: EdgeInsets.symmetric(
           horizontal: defaultMargin,
@@ -124,17 +105,6 @@ class SignUpPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Full Name',
-              style: blackTextStyle,
-            ),
-            SizedBox(
-              height: 6,
-            ),
-            fullName(),
-            SizedBox(
-              height: 20,
-            ),
             Text(
               'Email Address',
               style: blackTextStyle,
@@ -157,16 +127,8 @@ class SignUpPage extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            Text(
-              'Hobby',
-              style: blackTextStyle,
-            ),
             SizedBox(
               height: 6,
-            ),
-            hobby(),
-            SizedBox(
-              height: 30,
             ),
             BlocConsumer<AuthCubit, AuthState>(
               listener: (context, state) {
@@ -199,7 +161,7 @@ class SignUpPage extends StatelessWidget {
                     },
                     child: CustomButton(
                       customMargin: 0,
-                      description: 'Sign Up',
+                      description: 'Sign In',
                     ));
               },
             ),
@@ -211,11 +173,11 @@ class SignUpPage extends StatelessWidget {
     Widget footer() {
       return GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, '/sign-in');
+          Navigator.pushNamed(context, '/sign-up');
         },
         child: Center(
           child: Text(
-            'Already have an account? Sign In',
+            'Don\'t have an accout? Sign Up',
             style: greyTextStyle.copyWith(
               fontSize: 16,
               fontWeight: light,
